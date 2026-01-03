@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import re
 from pathlib import Path
 import fitz
 import string
@@ -37,7 +36,4 @@ def extract_text_from_pdf(pdf_path: str | Path, max_pages: int | None = None) ->
     # split helps turn \n, \t, or just whitespace into an actual separable list
     cleaned = " ".join(raw.split())
 
-    # removes punctuation, but also as a byproduct, removes " ' " and " - "
-    cleaned_no_punct = cleaned.translate(str.maketrans("", "", string.punctuation))
-
-    return cleaned_no_punct
+    return cleaned
