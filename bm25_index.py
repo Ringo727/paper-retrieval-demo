@@ -46,3 +46,11 @@ def make_snippet(text: str, query_tokens: List[str], window: int = 240) -> str:
         snippet = snippet + "…"
 
     return snippet
+
+
+@dataclass
+class Doc:
+    doc_id: str
+    filename: str
+    text: str
+    tokens: List[str]
