@@ -54,3 +54,21 @@ class Doc:
     filename: str
     text: str
     tokens: List[str]
+
+
+class BM25Index:
+    def __init__(self) -> None:
+        self.docs: List[Doc] = []
+        self._bm25: Optional[BM25Okapi] = None
+
+    def add_doc(self, doc_id: str, filename: str, text: str) -> None:
+        toks = tokenize(text)
+        self.docs.append(Doc(doc_id=doc_id, filename=filename, text=text, tokens=toks))
+
+        # Invalidate index when we add a new doc, so we require reindex() to include new docs
+        # cause we're building our corpus for bm25 with all the docs that we have in a current snapshot
+        self._bm25 = None
+
+    def reindex(self) -> None:
+        corpus = [d.tokens for d in self.docs]
+        self._bm25 = BM25Okapi(corpus) if corpus else None
