@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from pathlib import Path
 import fitz
-import string
 
 
 # pdf_path is the path to the pdf either as a string or as a pathlib.Path
