@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BM25 PDF Paper Retriever Search Demo</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+
+  <body>
+    <div class="scroll">
+      <main class="page">
+        <h2>BM25 PDF Paper Retriever Search Demo</h2>
+        <p class="muted">
+          Load demo PDFs or upload your own, then run a query to rank documents using BM25. <br /><br />
+          (Note: Demo PDFs topics focus around LLM hallucination)
+        </p>
+
+        <div class="row">
+          <button id="loadDemoBtn">Load Demo PDFs</button>
+          <button id="resetBtn">Reset Index</button>
+          <span id="status" class="muted"></span>
+        </div>
+
+        <hr />
+
+        <h3>Upload PDFs</h3>
+        <div class="row">
+          <input id="pdfInput" type="file" accept="application/pdf" multiple />
+          <button id="uploadBtn">Upload</button>
+          <label class="muted">Max Amount of Pages to Read:</label>
+          <input id="maxPages" type="number" min="1" placeholder="10" value="10" style="width:80px;" />
+        </div>
+        <div id="uploadLog" class="muted" style="margin-top:8px;"></div>
+
+        <hr />
+
+        <h3>Search</h3>
+        <div class="row">
+          <input id="query" type="text" placeholder="e.g., hallucination factuality evaluation" />
+          <button id="searchBtn">Search</button>
+          <label class="muted"># of Results:</label>
+          <input id="k" type="number" min="1" max="50" value="10" style="width:80px;" />
+        </div>
+
+        <div id="results"></div>
+
+        <script src="/static/app.js"></script>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,186 @@
+:root {
+    --bg: #f1f3f5;
+    --panel: #ffffff;
+    --panel2: #f7f8fa;
+    --text: #111827;
+    --muted: #4b5563;
+    --border: rgba(17, 24, 39, 0.12);
+    --shadow: 0 10px 24px rgba(17, 24, 39, 0.10);
+    --accent: #2563eb;
+    --app-bg: var(--bg);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+html {
+    background: var(--app-bg);
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    color: var(--text);
+    font-family: system-ui, -apple-system, sans-serif;
+    background: transparent;
+}
+
+.scroll {
+    height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: none;
+    padding-top: 28px;
+}
+
+.page {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 16px 40px;
+}
+
+h2 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    letter-spacing: 0.2px;
+}
+
+h3 {
+    margin: 18px 0 10px;
+    font-size: 18px;
+}
+
+.muted {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 16px 0;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+input[type="text"],
+input[type="number"] {
+    background: var(--panel2);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 10px;
+    outline: none;
+}
+
+input[type="text"] {
+    width: min(560px, 100%);
+}
+
+input[type="number"] {
+    width: 96px;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: rgba(37, 99, 235, 0.45);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+input[type="file"] {
+    color: var(--muted);
+    border: 1px dashed rgba(17, 24, 39, 0.20);
+    border-radius: 10px;
+    padding: 10px;
+    background: var(--panel2);
+}
+
+button {
+    background: rgba(37, 99, 235, 0.10);
+    color: var(--text);
+    border: 1px solid rgba(37, 99, 235, 0.28);
+    border-radius: 10px;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: transform 0.05s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+button:hover {
+    background: rgba(37, 99, 235, 0.14);
+    border-color: rgba(37, 99, 235, 0.38);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+#resetBtn {
+    background: rgba(17, 24, 39, 0.05);
+    border-color: rgba(17, 24, 39, 0.12);
+}
+
+#resetBtn:hover {
+    background: rgba(17, 24, 39, 0.07);
+}
+
+#status {
+    margin-left: auto;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: rgba(17, 24, 39, 0.04);
+}
+
+.card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px 12px 10px;
+    margin: 12px 0;
+    box-shadow: var(--shadow);
+}
+
+.card strong {
+    font-size: 15px;
+}
+
+.mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12.5px;
+}
+
+pre {
+    margin: 10px 0 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: rgba(17, 24, 39, 0.92);
+    background: rgba(17, 24, 39, 0.04);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#uploadLog {
+    white-space: pre-wrap;
+    margin-top: 8px;
+}
+
+a {
+    color: var(--accent);
+}
+
+a:hover {
+    opacity: 0.9;
+}
