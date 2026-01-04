@@ -44,6 +44,9 @@ def stats() -> dict[str, Any]:
 # load all PDFs in demo_pdfs into the in memory index
 @app.post("/load_demo")
 def load_demo(max_pages: int | None = Query(default=10)) -> dict[str, Any]:
+    global index
+    index = BM25Index()  # clear existing docs so demo load doesn't duplicate
+
     pdfs = sorted(DEMO_DIR.glob("*.pdf"))
     if not pdfs:
         raise HTTPException(
@@ -119,7 +122,8 @@ async def upload_pdf(
             },
         )
 
-    # add to in memory index; BM25Index will reindex on next search
+    # add to the in memory list of docs
+    # BM25 index is rebuilt automatically upon next search (or reindex endpoint can be called)
     index.add_doc(doc_id=doc_id, filename=filename, text=text)
 
     return {
@@ -154,3 +158,12 @@ def reset() -> dict[str, Any]:
     global index
     index = BM25Index()
     return {"ok": True, "note": "Index cleared."}
+
+
+# returns list of corpus contents currently loaded
+@app.get("/docs")
+def list_docs() -> dict[str, Any]:
+    return {
+        "num_docs": len(index.docs),
+        "docs": [{"doc_id": d.doc_id, "filename": d.filename} for d in index.docs],
+    }
