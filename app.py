@@ -29,6 +29,11 @@ UPLOAD_DIR = APP_ROOT / "uploads"
 # Same thing for uploads directory as above
 UPLOAD_DIR.mkdir(exist_ok=True)
 
+# clear old uploads on server startup (for demoing purposes obviously and to clean up)
+for p in UPLOAD_DIR.glob("*"):
+    if p.is_file():
+        p.unlink()
+
 
 # initializing router (like router := chi.NewRouter() from Go that I did before)
 app = FastAPI()
