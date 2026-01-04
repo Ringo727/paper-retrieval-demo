@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
+
 import uuid
 from fastapi import File, UploadFile
 from fastapi.responses import JSONResponse
@@ -30,6 +33,8 @@ UPLOAD_DIR.mkdir(exist_ok=True)
 # initializing router (like router := chi.NewRouter() from Go that I did before)
 app = FastAPI()
 
+app.mount("/static", StaticFiles(directory=APP_ROOT / "static"), name="static")
+
 # using an in memory index for demo
 index = BM25Index()
 
@@ -42,6 +47,11 @@ def health() -> dict[str, str]:
 @app.get("/stats")
 def stats() -> dict[str, Any]:
     return index.stats()
+
+
+@app.get("/")
+def home():
+    return FileResponse(APP_ROOT / "index.html")
 
 
 # load all PDFs in demo_pdfs into the in memory index
