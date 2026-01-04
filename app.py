@@ -146,3 +146,11 @@ def search(
 ) -> dict[str, Any]:
     results = index.search(q, best_amount=k)
     return {"query": q, "k": k, "results": results}
+
+
+# clear the in memory index to reload demo PDFs cleanly again
+@app.post("/reset")
+def reset() -> dict[str, Any]:
+    global index
+    index = BM25Index()
+    return {"ok": True, "note": "Index cleared."}
