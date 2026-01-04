@@ -97,9 +97,6 @@ class BM25Index:
             :best_amount
         ]
 
-        # keep only docs with a positive score to yield only "relevant" results for the user
-        ranked = [(i, s) for i, s in ranked if s > 0]
-
         # build results in ranked order (again, ranked by score descending)
         results: list[dict[str, Any]] = []
         for idx, score in ranked:
