@@ -18,10 +18,13 @@ APP_ROOT = Path(__file__).parent
 
 DEMO_DIR = APP_ROOT / "demo_pdfs"
 
+# create uploads directory if it doesn't exist (safety to add to avoid setup issues)
+DEMO_DIR.mkdir(exist_ok=True)
+
 UPLOAD_DIR = APP_ROOT / "uploads"
-UPLOAD_DIR.mkdir(
-    exist_ok=True
-)  # create uploads directory if it doesn't exist (safety to add to avoid setup issues)
+
+# Same thing for uploads directory as above
+UPLOAD_DIR.mkdir(exist_ok=True)
 
 
 # initializing router (like router := chi.NewRouter() from Go that I did before)
