@@ -128,3 +128,21 @@ async def upload_pdf(
         "stored_as": out_path.name,
         "text_chars": len(text),
     }
+
+
+# rebuild BM25 stats from all docs currently loaded
+@app.post("/reindex")
+def reindex() -> dict[str, Any]:
+    index.reindex()
+    return {"ok": True, **index.stats()}
+
+
+# search both demo + uploads (everything currently in the same index)
+# What I mean is there's no separation of corpus for this demo
+@app.get("/search")
+def search(
+    q: str = Query(..., min_length=1),
+    k: int = Query(default=10, ge=1, le=50),
+) -> dict[str, Any]:
+    results = index.search(q, best_amount=k)
+    return {"query": q, "k": k, "results": results}
