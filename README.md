@@ -4,7 +4,7 @@ A small minimal FastAPI web app that lets you load a small demo corpus of PDFs (
 
 ## What it does
 
-- Loads PDFs from `demo_pdfs/` (optional demo corpus based on LLM Hallucination topical paper)
+- Loads PDFs from `demo_pdfs/`
 - Uploads PDFs through the web UI
 - Extracts text from PDFs (works best on text-based PDFs)
 - Ranks documents using BM25 and shows a short snippet near the first match
@@ -48,7 +48,7 @@ Open in browser:
 
 ## How to use
 
-1. (Optional) Put PDFs into demo_pdfs/.
+1. (Optional) Put PDFs into demo_pdfs/. [Provided demo PDFs are about LLM Hallucination]
 
 2. Open the UI and click Load Demo PDFs.
 
